@@ -1,0 +1,12 @@
+#!name=网络信息
+#!desc=蜂窝/Wi-Fi 网络信息 + 节点 + 落地 + IPPure 纯净度。支持参数自定义面板名、策略组与显示项。
+#!system=ios
+#!category=Information
+#!arguments=PANEL_TITLE:网络信息,GROUP:Proxy,UPDATE_INTERVAL:3600,ICON:network,ICON_COLOR:#34C759,SHOW_NETWORK:1,SHOW_PROXY_ISP:1,SHOW_LANDING:1,SHOW_ATTR:1,SHOW_SCORE:1,SHOW_LOC:1,SHOW_TZ:1,SHOW_ASN:1,SHOW_REFRESH:1,MASK_IP:0
+#!arguments-desc=参数说明（1=开，0=关）：\n\n· PANEL_TITLE：面板标题名称\n· GROUP：节点检测用的根策略组名（须与配置 [Proxy Group] 完全一致，如 Proxy）\n· UPDATE_INTERVAL：自动刷新间隔（秒），3600=每小时，-1=仅手动\n· ICON：面板图标（SF Symbol，如 network / wifi / globe）\n· ICON_COLOR：图标默认颜色（可被纯净度等级色覆盖）\n· SHOW_NETWORK：显示网络行（蜂窝运营商/制式 或 Wi-Fi）\n· SHOW_PROXY_ISP：显示代理 ISP\n· SHOW_LANDING：显示落地 IP\n· SHOW_ATTR：显示住宅/机房、原生/广播\n· SHOW_SCORE：显示 IPPure 纯净度\n· SHOW_LOC：显示位置\n· SHOW_TZ：显示时区\n· SHOW_ASN：显示 ASN\n· SHOW_REFRESH：显示刷新时间\n· MASK_IP：落地 IP 打码（如 1.165.*.*）
+
+[Panel]
+NetInfoPanel = script-name=NetInfoPanel, title="{{{PANEL_TITLE}}}", content="点击刷新...", icon={{{ICON}}}, icon-color={{{ICON_COLOR}}}, update-interval={{{UPDATE_INTERVAL}}}
+
+[Script]
+NetInfoPanel = type=generic, timeout=20, script-path=NodeIP-Test.js, argument="group={{{GROUP}}}&PANEL_TITLE={{{PANEL_TITLE}}}&ICON={{{ICON}}}&ICON_COLOR={{{ICON_COLOR}}}&SHOW_NETWORK={{{SHOW_NETWORK}}}&SHOW_PROXY_ISP={{{SHOW_PROXY_ISP}}}&SHOW_LANDING={{{SHOW_LANDING}}}&SHOW_ATTR={{{SHOW_ATTR}}}&SHOW_SCORE={{{SHOW_SCORE}}}&SHOW_LOC={{{SHOW_LOC}}}&SHOW_TZ={{{SHOW_TZ}}}&SHOW_ASN={{{SHOW_ASN}}}&SHOW_REFRESH={{{SHOW_REFRESH}}}&MASK_IP={{{MASK_IP}}}"
